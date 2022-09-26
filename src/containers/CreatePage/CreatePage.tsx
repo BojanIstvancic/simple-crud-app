@@ -1,6 +1,6 @@
-export interface CreatePageProps {}
+import { RouteComponentProps } from "react-router-dom";
 
-const CreatePage: React.FC<CreatePageProps> = () => {
+const CreatePage: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <p>CreatePage</p>

@@ -1,6 +1,6 @@
-export interface HomePageProps {}
+import { RouteComponentProps } from "react-router-dom";
 
-const HomePage: React.FC<HomePageProps> = () => {
+const HomePage: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <p>HomePage</p>

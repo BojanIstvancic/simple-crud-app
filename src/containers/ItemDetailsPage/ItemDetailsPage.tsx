@@ -1,6 +1,9 @@
-export interface ItemDetailsPageProps {}
+import { RouteComponentProps } from "react-router-dom";
 
-const ItemDetailsPage: React.FC<ItemDetailsPageProps> = () => {
+const ItemDetailsPage: React.FC<RouteComponentProps> = ({
+  history,
+  location,
+}) => {
   return (
     <>
       <p>ItemDetailsPage</p>
