@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import LinearProgress from "@mui/material/LinearProgress";
 import { styled } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -30,11 +31,19 @@ export interface Item {
 
 const HomePage: React.FC<RouteComponentProps> = () => {
   const [data, setData] = useState<Item[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    axios.get(defaultConfig.apiUrl).then((res) => {
-      setData(res.data);
-    });
+    axios
+      .get(defaultConfig.apiUrl)
+      .then((res) => {
+        setData(res.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(true);
+      });
   }, []);
 
   return (
@@ -60,26 +69,33 @@ const HomePage: React.FC<RouteComponentProps> = () => {
         </AppBar>
       </Box>
       <Container>
-        <Box>
-          <Typography
-            variant="h4"
-            component="div"
-            sx={{ mt: 5, mb: 5, color: blue[900] }}
-          >
-            All Items
-          </Typography>
-          <Box>
-            {data &&
-              data.map((item: Item) => (
-                <ListItem
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  body={item.body}
-                />
-              ))}
+        {isLoading && (
+          <Box sx={{ width: "100%", mt: 10 }}>
+            <LinearProgress />
           </Box>
-        </Box>
+        )}
+        {!isLoading && (
+          <Box>
+            <Typography
+              variant="h4"
+              component="div"
+              sx={{ mt: 5, mb: 5, color: blue[900] }}
+            >
+              All Items
+            </Typography>
+            <Box>
+              {data &&
+                data.map((item: Item) => (
+                  <ListItem
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    body={item.body}
+                  />
+                ))}
+            </Box>
+          </Box>
+        )}
       </Container>
     </MainContent>
   );
