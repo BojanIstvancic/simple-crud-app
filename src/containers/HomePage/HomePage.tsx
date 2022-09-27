@@ -7,6 +7,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { blue } from "@mui/material/colors";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
@@ -15,9 +16,9 @@ import ListItem from "../../components/ListItem/ListItem";
 import defaultConfig from "../../config";
 
 export interface Item {
-  body: string;
   id: number;
   title: string;
+  body: string;
   userId: number;
 }
 
@@ -61,13 +62,22 @@ const HomePage: React.FC<RouteComponentProps> = () => {
       </Box>
       <Container>
         <Box>
-          <Typography variant="h4" component="div" sx={{ mt: 5, mb: 5 }}>
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{ mt: 5, mb: 5, color: blue[900] }}
+          >
             All Items
           </Typography>
           <Box>
             {data &&
               data.map((item: Item) => (
-                <ListItem key={item.id} title={item.title} body={item.body} />
+                <ListItem
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  body={item.body}
+                />
               ))}
           </Box>
         </Box>
