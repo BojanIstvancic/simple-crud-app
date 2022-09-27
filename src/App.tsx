@@ -13,13 +13,13 @@ const App: React.FC<AppProps> = () => {
     <LayoutWrapper>
       <Router>
         <Switch>
-          <Route exact path={links.home.pattern} component={HomePage} />
           <Route exact path={links.create.pattern} component={CreatePage} />
           <Route
             exact
             path={links.itemDetails().pattern}
             component={ItemDetailsPage}
           />
+          <Route exact path={links.home.pattern} component={HomePage} />
           <Route component={ErrorPage} />
         </Switch>
       </Router>

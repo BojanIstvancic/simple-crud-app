@@ -17,13 +17,6 @@ import ListItem from "../../components/ListItem/ListItem";
 import defaultConfig from "../../config";
 import links from "../../helpers/links";
 
-export interface Item {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-}
-
 const StyledLink = styled(Link)`
   transition: all 500ms ease;
   color: #fff;
@@ -34,6 +27,13 @@ const StyledLink = styled(Link)`
     opacity: 0.7;
   }
 `;
+
+export interface Item {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}
 
 const HomePage: React.FC<RouteComponentProps> = () => {
   const [data, setData] = useState<Item[]>([]);

@@ -4,6 +4,7 @@ const ItemDetailsPage: React.FC<RouteComponentProps> = ({
   history,
   location,
 }) => {
+  console.log("are we here");
   return (
     <>
       <p>ItemDetailsPage</p>
