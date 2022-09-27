@@ -18,14 +18,7 @@ import defaultConfig from "../../config";
 import links from "../../helpers/links";
 
 const StyledLink = styled(Link)`
-  transition: all 500ms ease;
   color: #fff;
-
-  &:focus,
-  &:hover {
-    text-decoration: none;
-    opacity: 0.7;
-  }
 `;
 
 export interface Item {
@@ -39,17 +32,10 @@ const HomePage: React.FC<RouteComponentProps> = () => {
   const [data, setData] = useState<Item[]>([]);
 
   useEffect(() => {
-    getData();
+    axios.get(defaultConfig.apiUrl).then((res) => {
+      setData(res.data);
+    });
   }, []);
-
-  async function getData() {
-    try {
-      const response = await axios.get(defaultConfig.apiUrl);
-      setData(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <MainContent>

@@ -11,7 +11,6 @@ const StyledLink = styled(Link)`
 
   &:focus,
   &:hover {
-    text-decoration: none;
     opacity: 0.7;
   }
 `;
