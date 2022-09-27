@@ -68,7 +68,7 @@ const CreatePage: React.FC<RouteComponentProps> = ({ history }) => {
                 <Box sx={{ mb: 5 }}>
                   <TextField
                     id="outlined-multiline-flexible"
-                    label="Item Title"
+                    label="Title"
                     name="title"
                     value={item.title}
                     multiline
@@ -79,7 +79,7 @@ const CreatePage: React.FC<RouteComponentProps> = ({ history }) => {
                 <Box sx={{ mb: 5 }}>
                   <TextField
                     id="outlined-multiline-flexible"
-                    label="Item Body"
+                    label="Description"
                     name="body"
                     value={item.body}
                     multiline
