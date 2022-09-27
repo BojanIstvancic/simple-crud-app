@@ -8,12 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import { styled } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 import { MainContent } from "../../components/layout/layoutStyled";
 import ListItem from "../../components/ListItem/ListItem";
 import defaultConfig from "../../config";
+import links from "../../helpers/links";
 
 export interface Item {
   id: number;
@@ -21,6 +23,17 @@ export interface Item {
   body: string;
   userId: number;
 }
+
+const StyledLink = styled(Link)`
+  transition: all 500ms ease;
+  color: #fff;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    opacity: 0.7;
+  }
+`;
 
 const HomePage: React.FC<RouteComponentProps> = () => {
   const [data, setData] = useState<Item[]>([]);
@@ -38,22 +51,22 @@ const HomePage: React.FC<RouteComponentProps> = () => {
     }
   }
 
-  console.log(data, "data");
-
   return (
     <MainContent>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 1 }}
-            >
-              <AddCircleOutlineIcon />
-            </IconButton>
+            <StyledLink to={links.create.url}>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 1 }}
+              >
+                <AddCircleOutlineIcon />
+              </IconButton>
+            </StyledLink>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Create Item
             </Typography>

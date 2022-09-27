@@ -8,7 +8,7 @@ const links = {
     pattern: `/create`,
   },
   itemDetails: (itemId?: number) => ({
-    url: `/details/:${itemId}`,
+    url: `/details/${itemId}`,
     pattern: `/details/:id`,
   }),
 };
