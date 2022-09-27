@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { MainContent } from "../../components/layout/layoutStyled";
 import defaultConfig from "../../config";
+import links from "../../helpers/links";
 
 export interface Item {
   id: number;
@@ -23,7 +24,10 @@ interface RouteParams {
 
 interface ItemDetailsPageProps extends RouteComponentProps<RouteParams> {}
 
-const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({ match }) => {
+const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
+  match,
+  history,
+}) => {
   const [item, setItem] = useState<Item>({
     id: 1,
     title: "Default Title",
@@ -55,8 +59,8 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({ match }) => {
   const deleteItem = () => {
     axios
       .delete(`${defaultConfig.apiUrl}/${item.id}`)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        history.push(links.home.pattern);
       })
       .catch((error) => {
         console.log(error);
