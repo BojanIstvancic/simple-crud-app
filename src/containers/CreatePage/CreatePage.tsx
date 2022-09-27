@@ -37,7 +37,7 @@ const CreatePage: React.FC<RouteComponentProps> = ({ history }) => {
     axios
       .post(`${defaultConfig.apiUrl}`, item)
       .then((response) => {
-        history.push(links.home.pattern);
+        history.push(links.home.url);
       })
       .catch((error) => {
         console.log(error);

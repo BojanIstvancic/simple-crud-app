@@ -62,7 +62,7 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
     axios
       .delete(`${defaultConfig.apiUrl}/${item.id}`)
       .then(() => {
-        history.push(links.home.pattern);
+        history.push(links.home.url);
       })
       .catch((error) => {
         console.log(error);
@@ -77,7 +77,7 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
     axios
       .put(`${defaultConfig.apiUrl}/${item.id}`, item)
       .then(() => {
-        history.push(links.home.pattern);
+        history.push(links.home.url);
       })
       .catch((error) => {
         console.log(error);
