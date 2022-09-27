@@ -48,24 +48,26 @@ const HomePage: React.FC<RouteComponentProps> = () => {
 
   return (
     <MainContent>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box>
         <AppBar position="static">
-          <Toolbar>
-            <StyledLink to={links.create.url}>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 1 }}
-              >
-                <AddCircleOutlineIcon />
-              </IconButton>
-            </StyledLink>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Create Item
-            </Typography>
-          </Toolbar>
+          <Container disableGutters>
+            <Toolbar>
+              <StyledLink to={links.create.url}>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 1 }}
+                >
+                  <AddCircleOutlineIcon />
+                </IconButton>
+              </StyledLink>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Create Item
+              </Typography>
+            </Toolbar>
+          </Container>
         </AppBar>
       </Box>
       <Container>

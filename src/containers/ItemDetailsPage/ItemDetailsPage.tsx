@@ -57,6 +57,8 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
   };
 
   const deleteItem = () => {
+    setIsLoading(true);
+
     axios
       .delete(`${defaultConfig.apiUrl}/${item.id}`)
       .then(() => {
@@ -65,9 +67,13 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
       .catch((error) => {
         console.log(error);
       });
+
+    setIsLoading(false);
   };
 
   const updateItem = () => {
+    setIsLoading(true);
+
     axios
       .put(`${defaultConfig.apiUrl}/${item.id}`, item)
       .then(() => {
@@ -76,6 +82,8 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
       .catch((error) => {
         console.log(error);
       });
+
+    setIsLoading(false);
   };
 
   return (
