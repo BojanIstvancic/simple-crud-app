@@ -1,8 +1,9 @@
-import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CreatePage from "./containers/CreatePage";
 import ErrorPage from "./containers/ErrorPage";
 import HomePage from "./containers/HomePage";
 import ItemDetailsPage from "./containers/ItemDetailsPage";
+import links from "./helpers/links";
 
 export interface AppProps {}
 
@@ -11,9 +12,13 @@ const App: React.FC<AppProps> = () => {
     <>
       <Router>
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/create" component={CreatePage} />
-          <Route exact path="/details/:id" component={ItemDetailsPage} />
+          <Route exact path={links.home.pattern} component={HomePage} />
+          <Route exact path={links.create.pattern} component={CreatePage} />
+          <Route
+            exact
+            path={links.itemDetails().pattern}
+            component={ItemDetailsPage}
+          />
           <Route component={ErrorPage} />
         </Switch>
       </Router>
