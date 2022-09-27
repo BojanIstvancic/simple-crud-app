@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
+import { MainContent } from "../../components/layout/layoutStyled";
 import defaultConfig from "../../config";
 
 const HomePage: React.FC<RouteComponentProps> = () => {
@@ -19,11 +20,12 @@ const HomePage: React.FC<RouteComponentProps> = () => {
     }
   }
 
-  console.log(data, "daturina");
+  console.log(data, "data");
+
   return (
-    <>
+    <MainContent>
       <p>HomePage</p>
-    </>
+    </MainContent>
   );
 };
 

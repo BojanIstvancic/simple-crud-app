@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { LayoutWrapper } from "./components/layout/layoutStyled";
 import CreatePage from "./containers/CreatePage";
 import ErrorPage from "./containers/ErrorPage";
 import HomePage from "./containers/HomePage";
@@ -9,7 +10,7 @@ export interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
   return (
-    <>
+    <LayoutWrapper>
       <Router>
         <Switch>
           <Route exact path={links.home.pattern} component={HomePage} />
@@ -22,7 +23,7 @@ const App: React.FC<AppProps> = () => {
           <Route component={ErrorPage} />
         </Switch>
       </Router>
-    </>
+    </LayoutWrapper>
   );
 };
 
