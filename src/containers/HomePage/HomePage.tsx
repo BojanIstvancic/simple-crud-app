@@ -1,6 +1,7 @@
-import { RouteComponentProps } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { RouteComponentProps } from "react-router-dom";
+import defaultConfig from "../../config";
 
 const HomePage: React.FC<RouteComponentProps> = () => {
   const [data, setData] = useState(null);
@@ -11,9 +12,7 @@ const HomePage: React.FC<RouteComponentProps> = () => {
 
   async function getData() {
     try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
+      const response = await axios.get(defaultConfig.apiUrl);
       setData(response.data);
     } catch (error) {
       console.error(error);
