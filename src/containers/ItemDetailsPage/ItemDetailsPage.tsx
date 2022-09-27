@@ -1,6 +1,10 @@
+import { Container, TextField, Typography } from "@mui/material";
+import { blue } from "@mui/material/colors";
+import { Box } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
+import { MainContent } from "../../components/layout/layoutStyled";
 import defaultConfig from "../../config";
 
 export interface Item {
@@ -32,11 +36,44 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({ match }) => {
     });
   }, [id]);
 
-  console.log(item, "item");
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setItem({ ...item, [event.target.name]: event.target.value });
+  };
+
   return (
-    <>
-      <p>ItemDetailsPage</p>
-    </>
+    <MainContent>
+      <Container>
+        <Typography
+          variant="h4"
+          component="div"
+          sx={{ mt: 5, mb: 5, color: blue[900] }}
+        >
+          Item Details
+        </Typography>
+
+        <Box component="form" noValidate autoComplete="off">
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Item Title"
+            name="title"
+            value={item.title}
+            multiline
+            sx={{ mb: 5 }}
+            style={{ width: "100%", maxWidth: "500px" }}
+            onChange={handleChange}
+          />
+        </Box>
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Item Body"
+          name="body"
+          value={item.body}
+          multiline
+          style={{ width: "100%", maxWidth: "500px" }}
+          onChange={handleChange}
+        />
+      </Container>
+    </MainContent>
   );
 };
 
