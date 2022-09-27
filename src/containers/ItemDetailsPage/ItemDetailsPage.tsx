@@ -64,7 +64,17 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
       })
       .catch((error) => {
         console.log(error);
-        setIsLoading(true);
+      });
+  };
+
+  const updateItem = () => {
+    axios
+      .put(`${defaultConfig.apiUrl}/${item.id}`, item)
+      .then(() => {
+        history.push(links.home.pattern);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -86,27 +96,29 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
               Item Details
             </Typography>
             <Box>
-              <Box sx={{ mb: 5 }}>
-                <TextField
-                  id="outlined-multiline-flexible"
-                  label="Item Title"
-                  name="title"
-                  value={item.title}
-                  multiline
-                  style={{ width: "100%", maxWidth: "500px" }}
-                  onChange={handleChange}
-                />
-              </Box>
-              <Box sx={{ mb: 5 }}>
-                <TextField
-                  id="outlined-multiline-flexible"
-                  label="Item Body"
-                  name="body"
-                  value={item.body}
-                  multiline
-                  style={{ width: "100%", maxWidth: "500px" }}
-                  onChange={handleChange}
-                />
+              <Box>
+                <Box sx={{ mb: 5 }}>
+                  <TextField
+                    id="outlined-multiline-flexible"
+                    label="Item Title"
+                    name="title"
+                    value={item.title}
+                    multiline
+                    style={{ width: "100%", maxWidth: "500px" }}
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box sx={{ mb: 5 }}>
+                  <TextField
+                    id="outlined-multiline-flexible"
+                    label="Item Body"
+                    name="body"
+                    value={item.body}
+                    multiline
+                    style={{ width: "100%", maxWidth: "500px" }}
+                    onChange={handleChange}
+                  />
+                </Box>
               </Box>
               <Box>
                 <Box>
@@ -134,6 +146,7 @@ const ItemDetailsPage: React.FC<ItemDetailsPageProps> = ({
                     color="inherit"
                     aria-label="menu"
                     sx={{ color: blue[600] }}
+                    onClick={updateItem}
                   >
                     <UpdateIcon />
                   </IconButton>
