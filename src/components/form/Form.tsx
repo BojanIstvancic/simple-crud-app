@@ -154,6 +154,12 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
                 value={item.title}
                 multiline
                 style={{ width: "100%", maxWidth: "500px" }}
+                error={item.title === ""}
+                helperText={
+                  item.title === ""
+                    ? "This field is required"
+                    : "Please enter title"
+                }
                 onChange={handleChange}
               />
             </Box>
@@ -165,6 +171,12 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
                 value={item.body}
                 multiline
                 style={{ width: "100%", maxWidth: "500px" }}
+                error={item.body === ""}
+                helperText={
+                  item.body === ""
+                    ? "This field is required"
+                    : "Please enter description"
+                }
                 onChange={handleChange}
               />
             </Box>
@@ -199,6 +211,7 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
                     aria-label="menu"
                     sx={{ color: blue[600] }}
                     onClick={updateItem}
+                    disabled={item.title === "" || item.body === ""}
                   >
                     <UpdateIcon />
                   </IconButton>
@@ -216,6 +229,7 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
                   aria-label="menu"
                   sx={{ mr: 2, color: blue[600] }}
                   onClick={createItem}
+                  disabled={item.title === "" || item.body === ""}
                 >
                   <AddCircleOutlineIcon />
                 </IconButton>
