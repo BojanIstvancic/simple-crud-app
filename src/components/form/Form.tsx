@@ -102,111 +102,94 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
   };
 
   return (
-    <MainContent>
-      <Container>
-        {isLoading && (
-          <Box sx={{ width: "100%", mt: 10 }}>
-            <LinearProgress />
-          </Box>
-        )}
-        {!isLoading && (
-          <>
-            <Box>
-              <Box>
-                <Box sx={{ mb: 5 }}>
-                  <TextField
-                    id="outlined-multiline-flexible"
-                    label="Title"
-                    name="title"
-                    value={item.title}
-                    multiline
-                    style={{ width: "100%", maxWidth: "500px" }}
-                    onChange={handleChange}
-                  />
-                </Box>
-                <Box sx={{ mb: 5 }}>
-                  <TextField
-                    id="outlined-multiline-flexible"
-                    label="Description"
-                    name="body"
-                    value={item.body}
-                    multiline
-                    style={{ width: "100%", maxWidth: "500px" }}
-                    onChange={handleChange}
-                  />
-                </Box>
-              </Box>
-              <Box>
-                {id ? (
-                  <>
-                    <Box>
-                      <Typography
-                        variant="body1"
-                        component={"span"}
-                        sx={{ mr: 3 }}
-                      >
-                        Delete Item
-                      </Typography>
-                      <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2, color: red[300] }}
-                        onClick={deleteItem}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </Box>
-
-                    <Box>
-                      <Typography
-                        variant="body1"
-                        component={"span"}
-                        sx={{ mr: 3 }}
-                      >
-                        Update Item
-                      </Typography>
-                      <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ color: blue[600] }}
-                        onClick={updateItem}
-                      >
-                        <UpdateIcon />
-                      </IconButton>
-                    </Box>
-                  </>
-                ) : (
-                  <Box>
-                    <Typography
-                      variant="body1"
-                      component={"span"}
-                      sx={{ mr: 3 }}
-                    >
-                      Create Item
-                    </Typography>
-
-                    <IconButton
-                      size="large"
-                      edge="start"
-                      color="inherit"
-                      aria-label="menu"
-                      sx={{ mr: 2, color: blue[600] }}
-                      onClick={createItem}
-                    >
-                      <AddCircleOutlineIcon />
-                    </IconButton>
-                  </Box>
-                )}
-              </Box>
+    <>
+      {isLoading && (
+        <Box sx={{ width: "100%", mt: 10 }}>
+          <LinearProgress />
+        </Box>
+      )}
+      {!isLoading && (
+        <Box>
+          <Box>
+            <Box sx={{ mb: 5 }}>
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Title"
+                name="title"
+                value={item.title}
+                multiline
+                style={{ width: "100%", maxWidth: "500px" }}
+                onChange={handleChange}
+              />
             </Box>
-          </>
-        )}
-      </Container>
-    </MainContent>
+            <Box sx={{ mb: 5 }}>
+              <TextField
+                id="outlined-multiline-flexible"
+                label="Description"
+                name="body"
+                value={item.body}
+                multiline
+                style={{ width: "100%", maxWidth: "500px" }}
+                onChange={handleChange}
+              />
+            </Box>
+          </Box>
+          <Box>
+            {id ? (
+              <>
+                <Box>
+                  <Typography variant="body1" component={"span"} sx={{ mr: 3 }}>
+                    Delete Item
+                  </Typography>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mr: 2, color: red[300] }}
+                    onClick={deleteItem}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Box>
+
+                <Box>
+                  <Typography variant="body1" component={"span"} sx={{ mr: 3 }}>
+                    Update Item
+                  </Typography>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ color: blue[600] }}
+                    onClick={updateItem}
+                  >
+                    <UpdateIcon />
+                  </IconButton>
+                </Box>
+              </>
+            ) : (
+              <Box>
+                <Typography variant="body1" component={"span"} sx={{ mr: 3 }}>
+                  Create Item
+                </Typography>
+                <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2, color: blue[600] }}
+                  onClick={createItem}
+                >
+                  <AddCircleOutlineIcon />
+                </IconButton>
+              </Box>
+            )}
+          </Box>
+        </Box>
+      )}
+    </>
   );
 };
 
