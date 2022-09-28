@@ -159,7 +159,7 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
                 helperText={
                   item.title === ""
                     ? "This field is required"
-                    : "Please enter title"
+                    : "Please enter a title"
                 }
                 onChange={handleChange}
               />
@@ -176,7 +176,7 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
                 helperText={
                   item.body === ""
                     ? "This field is required"
-                    : "Please enter description"
+                    : "Please enter a description"
                 }
                 onChange={handleChange}
               />
