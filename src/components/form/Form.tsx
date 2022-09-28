@@ -27,12 +27,13 @@ export interface FormProps {
   id?: string | null;
 }
 
-const style = {
+const modalStyle = {
   position: "absolute" as "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "90%",
+  maxWidth: "400px",
   bgcolor: "#fff",
   border: `2px solid ${blue[600]}`,
   color: `${blue[600]}`,
@@ -245,7 +246,7 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
         aria-describedby="modal-modal-description"
         onClose={() => setModalData({ ...modalData, displayModal: false })}
       >
-        <Box sx={style}>
+        <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {modalData.text}
           </Typography>
