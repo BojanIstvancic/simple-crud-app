@@ -1,17 +1,20 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
-import { Container, IconButton, TextField, Typography } from "@mui/material";
+import { IconButton, Modal, TextField, Typography } from "@mui/material";
 import { blue, red } from "@mui/material/colors";
 import LinearProgress from "@mui/material/LinearProgress";
 import { Box } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { MainContent } from "../../components/layout/layoutStyled";
 import defaultConfig from "../../config";
 import links from "../../helpers/links";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { History } from "history";
 
+export interface ModalDataProps {
+  text: string;
+  displayModal: boolean;
+}
 export interface Item {
   id: number;
   title: string;
@@ -19,10 +22,23 @@ export interface Item {
   userId: number;
 }
 
-interface FormProps {
+export interface FormProps {
   history: History;
   id?: string | null;
 }
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "#fff",
+  border: `2px solid ${blue[600]}`,
+  color: `${blue[600]}`,
+  boxShadow: 24,
+  p: 4,
+};
 
 const Form: React.FC<FormProps> = ({ history, id = null }) => {
   const [item, setItem] = useState<Item>({
@@ -32,14 +48,19 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
     userId: 1,
   });
 
+  const [modalData, setModalData] = useState<ModalDataProps>({
+    text: "Modal Text",
+    displayModal: false,
+  });
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (id) {
       axios
         .get(`${defaultConfig.apiUrl}/${id}`)
-        .then((res) => {
-          setItem(res.data);
+        .then((response) => {
+          setItem(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -59,8 +80,14 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
     axios
       .post(`${defaultConfig.apiUrl}`, { title: item.title, body: item.body })
       .then((response) => {
-        console.log(response, "create");
-        history.push(links.home.url);
+        console.log(response, "create"); //data
+
+        setModalData({
+          text: "You have successfully created an item. You will be redirected on homepage.",
+          displayModal: true,
+        });
+
+        setTimeout(() => history.push(links.home.url), 5000);
       })
       .catch((error) => {
         console.log(error);
@@ -75,8 +102,13 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
     axios
       .delete(`${defaultConfig.apiUrl}/${item.id}`)
       .then((response) => {
-        console.log(response, "delete");
-        history.push(links.home.url);
+        setModalData({
+          text: "You have successfully deleted the item. You will be redirected on homepage.",
+          displayModal: true,
+        });
+        console.log(response, "update"); // data
+
+        setTimeout(() => history.push(links.home.url), 5000);
       })
       .catch((error) => {
         console.log(error);
@@ -91,8 +123,11 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
     axios
       .put(`${defaultConfig.apiUrl}/${item.id}`, item)
       .then((response) => {
-        console.log(response, "update");
-        history.push(links.home.url);
+        setModalData({
+          text: "You have successfully updated the item.",
+          displayModal: true,
+        });
+        console.log(response, "update"); // data
       })
       .catch((error) => {
         console.log(error);
@@ -189,6 +224,19 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
           </Box>
         </Box>
       )}
+
+      <Modal
+        open={modalData.displayModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        onClose={() => setModalData({ ...modalData, displayModal: false })}
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {modalData.text}
+          </Typography>
+        </Box>
+      </Modal>
     </>
   );
 };
