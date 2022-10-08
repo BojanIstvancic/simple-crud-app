@@ -10,6 +10,8 @@ import defaultConfig from "../../config";
 import links from "../../helpers/links";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { History } from "history";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Link } from "react-router-dom";
 
 export interface ModalDataProps {
   text: string;
@@ -185,7 +187,7 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
           <Box>
             {id ? (
               <>
-                <Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Typography variant="body1" component={"span"} sx={{ mr: 3 }}>
                     Delete Item
                   </Typography>
@@ -201,7 +203,7 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
                   </IconButton>
                 </Box>
 
-                <Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Typography variant="body1" component={"span"} sx={{ mr: 3 }}>
                     Update Item
                   </Typography>
@@ -219,7 +221,7 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
                 </Box>
               </>
             ) : (
-              <Box>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
                 <Typography variant="body1" component={"span"} sx={{ mr: 3 }}>
                   Create Item
                 </Typography>
@@ -239,6 +241,15 @@ const Form: React.FC<FormProps> = ({ history, id = null }) => {
           </Box>
         </Box>
       )}
+
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Typography variant="body1" component={"span"} sx={{ mr: 3 }}>
+          Go Back to Home Page
+        </Typography>
+        <Link to={links.home.url}>
+          <ArrowBackIcon />
+        </Link>
+      </Box>
 
       <Modal
         open={modalData.displayModal}
