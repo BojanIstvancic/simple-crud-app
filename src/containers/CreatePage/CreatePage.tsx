@@ -1,8 +1,8 @@
 import { Container, Typography } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { RouteComponentProps } from "react-router-dom";
-import { MainContent } from "../../components/layout/layoutStyled";
-import Form from "../../components/form/Form";
+import { MainContent } from "../../components/Layout/layoutStyled";
+import Form from "../../components/Form/Form";
 
 const CreatePage: React.FC<RouteComponentProps> = ({ history }) => {
   return (

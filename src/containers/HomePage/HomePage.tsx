@@ -13,7 +13,7 @@ import { styled } from "@mui/system";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
-import { MainContent } from "../../components/layout/layoutStyled";
+import { MainContent } from "../../components/Layout/layoutStyled";
 import ListItem from "../../components/ListItem/ListItem";
 import defaultConfig from "../../config";
 import links from "../../helpers/links";

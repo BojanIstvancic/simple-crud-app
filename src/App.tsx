@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import { LayoutWrapper } from "./components/layout/layoutStyled";
+import { LayoutWrapper } from "./components/Layout/layoutStyled";
 import Routes from "./Routes";
 
 export interface AppProps {}
